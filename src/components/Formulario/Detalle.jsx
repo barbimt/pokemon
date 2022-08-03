@@ -1,11 +1,29 @@
 import React, { useContext } from "react";
 import { ContextoFormulario } from "../../context/ContextoFormulario"
+import Swal from 'sweetalert2'
 
 const Detalle = () => {
   const { formulario } = useContext(ContextoFormulario);
 
   const { nombre, apellido, email, nombrePokemon } = formulario;
 
+  const validarInputs = nombre !== "" && apellido !== ""  && email !== ""  && nombrePokemon  !== "" 
+
+  const onSubmit = () => {
+    if (!validarInputs) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: "completá los campos del formulario"
+      })
+    } else {
+       Swal.fire({
+      icon: 'success',
+      title: 'Solicitud enviada!'
+    })
+    }
+   
+  }
   return (
     <div className="detalle-formulario">
       <div className="encabezado">
@@ -27,7 +45,7 @@ const Detalle = () => {
       </section>
       <button
         className="boton-enviar"
-        onClick={() => alert("Solicitud enviada :)")}
+        onClick={onSubmit}
       >
         Enviar Solicitud
       </button>
