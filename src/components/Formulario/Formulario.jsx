@@ -5,7 +5,7 @@ import entrenador from "../../assets/entrenador.png";
 import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
-import   ProviderFormulario from "../../context/ContextoFormulario";
+import  ProviderFormulario from "../../context/ContextoFormulario";
 
 // En este componente tenemos nuestro formulario y dentro de él
 // tenemos los componentes que necesitan consumir nuestro estado.
@@ -42,7 +42,7 @@ const Formulario = () => {
                   <img src={entrenador} alt="entrenador" />
                   <span>ENTRENADOR</span>
                 </p>
-                <Input name="nombre" label="Nombre" />
+                <Input name="nombre" label="Nombre" shouldFocus={true} />
                 <Input name="apellido" label="Apellido" />
                 <Input name="email" label="Email" type="email" />
               </div>
@@ -51,7 +51,15 @@ const Formulario = () => {
                   <img src={pikachu} alt="pikachu" />
                   <span>POKEMON</span>
                 </p>
-                <Input name="nombrePokemon" label="Nombre" />
+                <Input name="nombrePokemon" label="Nombre" isPokemon={true} />
+                <Input name="tipoPokemon" label="Tipo" isPokemon={true} />
+                <Input
+                  name="elementoPokemon"
+                  label="Elemento"
+                  isPokemon={true}
+                />
+                <Input name="alturaPokemon" label="Altura" isPokemon={true} />
+                <Input name="edadPokemon" label="Edad" isPokemon={true} />
               </div>
             </div>   
             <Detalle />

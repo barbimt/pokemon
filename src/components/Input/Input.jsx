@@ -1,8 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { ContextoFormulario } from "../../context/ContextoFormulario";
 
+const Input = ({
+  name,
+  label,
+  type = "text",
+  shouldFocus = false,
+  isPokemon = false,
+}) => {
+  const ref = useRef();
 
-const Input = ({ name, label, type = "text" }) => {
   const { handleInputBlur, formulario } = useContext(ContextoFormulario);
 
   const [value, setValue] = useState(formulario[name] || "");
@@ -11,12 +18,21 @@ const Input = ({ name, label, type = "text" }) => {
 
   const onBlur = (e) => {
     e.preventDefault();
-    handleInputBlur({
-      campo: name,
-      valor: value,
-    });
+    handleInputBlur(
+      isPokemon ? "ACTUALIZAR_POKEMON" : "ACTUALIZAR_ENTRENADOR",
+      {
+        campo: name,
+        valor: value,
+      }
+    );
   };
 
+  // Cuando el componente se monta, si debemos hacer focus, hacemos focus usando la referencia.
+  useEffect(() => {
+    if (ref.current && shouldFocus) {
+      ref.current.focus();
+    }
+  }, [shouldFocus]);
 
   return (
     <div className="input-contenedor">
@@ -27,6 +43,7 @@ const Input = ({ name, label, type = "text" }) => {
         id={name}
         onChange={onChange}
         onBlur={onBlur}
+        ref={ref}
       />
     </div>
   );

@@ -4,10 +4,18 @@ import Swal from 'sweetalert2'
 
 const Detalle = () => {
   const { formulario } = useContext(ContextoFormulario);
+ 
+  const { nombre, apellido, email } = formulario?.entrenador;
 
-  const { nombre, apellido, email, nombrePokemon } = formulario;
+  const {
+    nombrePokemon,
+    tipoPokemon,
+    elementoPokemon,
+    alturaPokemon,
+    edadPokemon,
+  } = formulario?.pokemon;
 
-  const validarInputs = nombre !== "" && apellido !== ""  && email !== ""  && nombrePokemon  !== "" 
+  const validarInputs = nombre !== "" && apellido !== ""  && email !== ""  && nombrePokemon  !== "" && tipoPokemon !== "" && elementoPokemon !== "" && alturaPokemon !== "" && edadPokemon !== ""
 
   const onSubmit = () => {
     if (!validarInputs) {
@@ -41,6 +49,10 @@ const Detalle = () => {
         <h4>Datos del Pokémon</h4>
         <div className="fila">
           <p>Nombre: {nombrePokemon}</p>
+          <p>Tipo: {tipoPokemon}</p>
+          <p>Elemento: {elementoPokemon}</p>
+          <p>Altura: {alturaPokemon}</p>
+          <p>Edad: {edadPokemon}</p>
         </div>
       </section>
       <button
