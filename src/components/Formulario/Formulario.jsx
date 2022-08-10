@@ -64,8 +64,6 @@ const Formulario = () => {
             </div>   
             <Detalle />
             </ProviderFormulario>
-
-       
         </div>
       </div>{" "}
     </>

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { ContextoFormulario } from "../../context/ContextoFormulario";
+import propTypes from "prop-types";
 
 const Input = ({
   name,
@@ -27,6 +28,7 @@ const Input = ({
     );
   };
 
+
   // Cuando el componente se monta, si debemos hacer focus, hacemos focus usando la referencia.
   useEffect(() => {
     if (ref.current && shouldFocus) {
@@ -48,5 +50,14 @@ const Input = ({
     </div>
   );
 };
+
+Input.propTypes = {
+  name: propTypes.string.isRequired,
+  label: propTypes.string.isRequired,
+  type: propTypes.string,
+  shouldFocus: propTypes.bool,
+  isPokemon: propTypes.bool,
+};
+
 
 export default Input;

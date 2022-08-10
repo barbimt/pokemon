@@ -15,6 +15,7 @@ const Detalle = () => {
     edadPokemon,
   } = formulario?.pokemon;
 
+
   const validarInputs = nombre !== "" && apellido !== ""  && email !== ""  && nombrePokemon  !== "" && tipoPokemon !== "" && elementoPokemon !== "" && alturaPokemon !== "" && edadPokemon !== ""
 
   const onSubmit = () => {
