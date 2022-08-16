@@ -6,13 +6,22 @@ import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
 import  ProviderFormulario from "../../context/ContextoFormulario";
-
+import { useQuery } from "react-query";
+import { getTipoPokemon } from "../../service/pokeService";
+import Select from "../Select/Select";
 // En este componente tenemos nuestro formulario y dentro de él
 // tenemos los componentes que necesitan consumir nuestro estado.
 // Recuerda cual es el paso que debemos tomar para que nuestros
 // componentes puedan consumir un estado global.
 
 const Formulario = () => {
+  const {
+    data: tipos,
+    isLoading,
+    isError,
+  } = useQuery("getTipoPokemon", getTipoPokemon);
+
+
   return (
     <>
       <header className="form-header">
@@ -52,7 +61,15 @@ const Formulario = () => {
                   <span>POKEMON</span>
                 </p>
                 <Input name="nombrePokemon" label="Nombre" isPokemon={true} />
+
                 <Input name="tipoPokemon" label="Tipo" isPokemon={true} />
+                <Select
+                  name="tipoPokemon"
+                  label="Tipo"
+                  options={tipos}
+                  disabled={isLoading || isError} // Deshabilitamos el input si está cargando o si hay un error
+                />
+
                 <Input
                   name="elementoPokemon"
                   label="Elemento"
