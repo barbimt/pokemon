@@ -67,7 +67,8 @@ const Formulario = () => {
                   name="tipoPokemon"
                   label="Tipo"
                   options={tipos}
-                  disabled={isLoading || isError} // Deshabilitamos el input si está cargando o si hay un error
+                  disabled={isLoading || isError} 
+                  // Deshabilitamos el input si está cargando o si hay un error
                 />
 
                 <Input
